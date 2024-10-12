@@ -29,13 +29,23 @@ const DrugDetails = () => {
     };
 
     fetchDrugDetails();
-  }, [rxcui]);
+  }, [drugDetails,rxcui]);
+
+
+  
 
   return (
     <div className="max-w-4xl mx-auto p-5">
       <h1 className="text-3xl font-bold text-center mb-4">Drug Details</h1>
       {loading && <Spinner />} {/* Use the Spinner component for loading state */}
       {error && <p className="text-red-500 text-center">{error}</p>}
+      {drugDetails && (
+         <div className="border border-gray-300 p-4 rounded-lg">
+         <h2 className="text-xl font-semibold">Drug ID: {rxcui}</h2>
+         <p><strong>Name:</strong> {drugDetails.name}</p>
+         <p><strong>Synonym:</strong> {drugDetails.synonym}</p>
+         </div>
+      )}
       {drugDetails && (
         <ul className="list-disc list-inside">
           {drugDetails.map((ndc, index) => (
